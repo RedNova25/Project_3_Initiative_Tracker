@@ -15,7 +15,6 @@ Initiative Tracker is a web application designed to assist Dungeon Masters (DMs)
     python -m venv .venv
     .venv\Scripts\activate
     pip install -r requirements.txt
-    pip install sqlmodel
     ollama pull all-minilm:l6-v2
     ollama pull llama3.1:8b
     ollama pull gemma3:4b
