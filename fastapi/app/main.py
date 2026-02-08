@@ -5,7 +5,7 @@ from pydantic import ValidationError
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 
-from app.routers import combatants, vectordb, ai_chat
+from app.routers import combatants, encounter, vectordb, ai_chat
 from app.services.sqldb_service import init_db, engine
 
 
@@ -20,6 +20,7 @@ app = FastAPI(lifespan=lifespan, swagger_ui_parameters={"syntaxHighlight": False
 app.include_router(combatants.router)
 app.include_router(vectordb.router)
 app.include_router(ai_chat.router)
+app.include_router(encounter.router)
 
 # Global custom Exception Handler
 # All Exceptions raised in the routers get handled here
