@@ -21,6 +21,7 @@ async def create_combatants(combatants: list[CombatantModel], session: Session =
         existing = session.exec(
             select(CombatantModel).where(CombatantModel.name == combatant.name)
         ).first()
+        CombatantModel.model_validate(combatant.model_dump()) # manually call validation, SQLModel requires it.CombatantModel.model_validate(combatant.model_dump()) # manually call validation, SQLModel requires it.
         if existing:
             combatants_failed.append(combatant)
             continue # skip duplicate names
@@ -92,6 +93,7 @@ async def replace_all_combatant_info(name: str, updated_combatant: CombatantMode
     # validate that the updated combatant's name matches the path variable
     if updated_combatant.name != name:
         raise HTTPException(status_code=400, detail=f"Combatant name in the request body ('{updated_combatant.name}') does not match the name in the path ('{name}').")
+    CombatantModel.model_validate(updated_combatant.model_dump()) # manually call validation, SQLModel requires it.
     combatant = session.exec(
         select(CombatantModel).where(CombatantModel.name == name)
     ).first()
@@ -117,6 +119,7 @@ async def update_combatant_dex_score(name: str, dex_score: int, session: Session
     if not combatant:
         raise HTTPException(status_code=404, detail=f"Combatant with name '{name}' not found; cannot be updated.")
     combatant.dex_score = dex_score
+    CombatantModel.model_validate(combatant.model_dump()) # manually call validation, SQLModel requires it.
     session.add(combatant)
     session.commit()
     ingest_combatants_vector([combatant])
@@ -134,6 +137,7 @@ async def update_combatant_other_init_mod(name: str, other_init_mod: int, sessio
     if not combatant:
         raise HTTPException(status_code=404, detail=f"Combatant with name '{name}' not found; cannot be updated.")
     combatant.other_init_mod = other_init_mod
+    CombatantModel.model_validate(combatant.model_dump()) # manually call validation, SQLModel requires it.
     session.add(combatant)
     session.commit()
     ingest_combatants_vector([combatant])
@@ -151,6 +155,7 @@ async def update_combatant_char_class(name: str, char_class: CharacterClass, ses
     if not combatant:
         raise HTTPException(status_code=404, detail=f"Combatant with name '{name}' not found; cannot be updated.")
     combatant.char_class = char_class
+    CombatantModel.model_validate(combatant.model_dump()) # manually call validation, SQLModel requires it.
     session.add(combatant)
     session.commit()
     ingest_combatants_vector([combatant])
