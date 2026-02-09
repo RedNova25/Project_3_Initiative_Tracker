@@ -9,6 +9,7 @@ function App() {
     <>
       <NavBar /> 
       <h1>hi </h1>
+      
     </>
   )
 }
