@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException
 from fastapi.params import Depends
 from sqlmodel import select, Session
 
-from app.models.combatant_model import CombatantModel, get_dex_init_mod, get_init_roll
+from app.models.combatant_model import CombatantModel, get_init_roll_details
 from app.services.sqldb_service import get_session
 
 router = APIRouter(
@@ -47,18 +47,4 @@ async def clear_encounter_chars():
 async def get_encounter_init_rolls():
     if len(encounter_chars) == 0:
         raise HTTPException(status_code=404, detail="No combatants have been added to the encounter.")
-
-    combatants_with_rolls = []
-    for combatant in encounter_chars.values():
-        combatant_dict = OrderedDict(combatant.model_dump())
-        del combatant_dict["dex_score"], combatant_dict["char_class"]
-        dex_init_mod = get_dex_init_mod(combatant.dex_score)
-        combatant_dict["dex_init_mod"] = dex_init_mod
-        combatant_dict.move_to_end("other_init_mod")
-        combatant_dict["init_roll"] = get_init_roll()
-        combatant_dict["initiative"] = combatant_dict["init_roll"] + dex_init_mod + combatant.other_init_mod
-        combatant_dict.move_to_end("initiative", last=False) # move initiative roll to the front
-        combatants_with_rolls.append(combatant_dict)
-    # sort by init_roll, highest to lowest
-    combatants_with_rolls.sort(key=lambda x: x["initiative"], reverse=True)
-    return combatants_with_rolls
+    return get_init_roll_details(encounter_chars.values())

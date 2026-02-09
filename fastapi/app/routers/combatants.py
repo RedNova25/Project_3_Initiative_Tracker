@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlmodel import Session, select
 
-from app.models.combatant_model import CombatantModel, CharacterClass, get_init_roll, get_dex_init_mod
+from app.models.combatant_model import CombatantModel, CharacterClass, get_init_roll_details
 from app.services.vectordb_service import ingest_combatants_vector, delete_combatants_vector
 from app.services.sqldb_service import get_session
 
@@ -30,12 +30,11 @@ async def create_combatants(combatants: list[CombatantModel], session: Session =
     if len(combatants_created) == 0:
         raise HTTPException(status_code=400, detail="No combatants were created. Either the request was empty or all combatants are already present.")
     session.commit()
-    print(combatants_created[0].model_dump_json())
     ingest_combatants_vector(combatants_created)
 
     return {
         "message": f"{len(combatants_created)} combatants created successfully. {len(combatants_failed)} combatants are already present.",
-        "created_combatants": combatants_created[0]
+        "created_combatants": combatants_created
     }
 
 # Get every character's initiative roll, sorted from highest to lowest. Include character's name, initiative roll, then all other info.
@@ -44,21 +43,7 @@ async def get_combatants_and_rolls(session: Session = Depends(get_session)):
     combatants = session.exec(select(CombatantModel)).all()
     if len(combatants) == 0:
         raise HTTPException(status_code=404, detail="No combatants have been created.")
-
-    combatants_with_rolls = []
-    for combatant in combatants:
-        combatant_dict = OrderedDict(combatant.model_dump())
-        del combatant_dict["dex_score"], combatant_dict["char_class"]
-        dex_init_mod = get_dex_init_mod(combatant.dex_score)
-        combatant_dict["dex_init_mod"] = dex_init_mod
-        combatant_dict.move_to_end("other_init_mod")
-        combatant_dict["init_roll"] = get_init_roll()
-        combatant_dict["initiative"] = combatant_dict["init_roll"] + dex_init_mod + combatant.other_init_mod
-        combatant_dict.move_to_end("initiative", last=False) # move initiative roll to the front
-        combatants_with_rolls.append(combatant_dict)
-    # sort by init_roll, highest to lowest
-    combatants_with_rolls.sort(key=lambda x: x["initiative"], reverse=True)
-    return combatants_with_rolls
+    return get_init_roll_details(combatants)
 
 # get a specific combatant's info by name
 @router.get("/{name}", status_code=200)

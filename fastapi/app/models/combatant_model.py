@@ -1,4 +1,5 @@
 import random
+from collections import OrderedDict
 from enum import Enum
 
 from sqlmodel import Field, SQLModel
@@ -39,7 +40,18 @@ class CombatantModel(SQLModel, table=True):
             "other_init_mod": self.other_init_mod,
         }
 
-# Prompt: I want to create a character Karlach with a DEX of 16 and a bonus init mod of +3
-# Output: Here is the properly formatted JSON to ingest that char
-
-# there are several methods, such as the dir method, which show you all of the builtins for an object
+def get_init_roll_details(combatants: list[CombatantModel]) -> list[dict]:
+    combatants_with_rolls = []
+    for combatant in combatants:
+        combatant_dict = OrderedDict(combatant.model_dump())
+        del combatant_dict["dex_score"], combatant_dict["char_class"]
+        dex_init_mod = get_dex_init_mod(combatant.dex_score)
+        combatant_dict["dex_init_mod"] = dex_init_mod
+        combatant_dict.move_to_end("other_init_mod")
+        combatant_dict["init_roll"] = get_init_roll()
+        combatant_dict["initiative"] = combatant_dict["init_roll"] + dex_init_mod + combatant.other_init_mod
+        combatant_dict.move_to_end("initiative", last=False) # move initiative roll to the front
+        combatants_with_rolls.append(combatant_dict)
+    # sort by init_roll, highest to lowest
+    combatants_with_rolls.sort(key=lambda x: x["initiative"], reverse=True)
+    return combatants_with_rolls
