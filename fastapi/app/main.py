@@ -4,6 +4,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import ValidationError
 from starlette.requests import Request
 from starlette.responses import JSONResponse
+from starlette.middleware.cors import CORSMiddleware #JOEY: added for CORS setup
 
 from app.routers import combatants, encounter, vectordb, ai_chat
 from app.services.sqldb_service import init_db, engine
@@ -21,6 +22,16 @@ app.include_router(combatants.router)
 app.include_router(vectordb.router)
 app.include_router(ai_chat.router)
 app.include_router(encounter.router)
+
+origins = ["http://localhost"] #JOEY added for CORS setup # Allows requests only from localhost 
+
+# JOEY CORS middleware setup added for CORS setup
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['http://localhost:5173'], # Allow only the React frontend running on localhost:5173
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 # Global custom Exception Handler
 # All Exceptions raised in the routers get handled here

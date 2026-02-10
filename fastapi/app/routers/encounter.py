@@ -36,7 +36,9 @@ async def remove_combatant_from_encounter(name: str):
 
 @router.get("/", status_code=200)
 async def get_encounter_combatants():
-    return {name : char.to_dict() for name, char in encounter_chars.items()}
+    # return {name : char.to_dict() for name, char in encounter_chars.items()} 
+    # JOEY :changed to return list of combatants instead of dict, 
+    return [char.to_dict() for char in encounter_chars.values()]
 
 @router.delete("/", status_code=200)
 async def clear_encounter_chars():
