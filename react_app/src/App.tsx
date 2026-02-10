@@ -1,15 +1,30 @@
-import { useState } from 'react'
-import './App.css'
 import NavBar from './components/NavBar'
+import { Route, Routes } from 'react-router-dom'
+// components
+import InitiativeView from './components/InitiativeView'
+import ViewEncounterChars from './components/ViewEncounterChars'
+import Home from './components/Home'
+import ViewCharDB from './components/ViewCharDB'
+// css
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
-      <NavBar /> 
-      <h1>hi </h1>
+    
+      <NavBar />
       
+      <Routes>
+        <Route path="/" element={<Home />}  />
+        <Route path="/viewcharacterdb" element={<ViewCharDB />}  />
+        <Route path="/initiativeview" element={<InitiativeView />} />
+        <Route path="/viewencounterchars" element={<ViewEncounterChars/>}  />
+      </Routes>
+
     </>
   )
 }
