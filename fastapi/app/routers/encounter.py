@@ -14,7 +14,7 @@ router = APIRouter(
 
 encounter_chars: dict[str, CombatantModel] = dict()
 
-@router.put("/", status_code=200)
+@router.put("/{name}", status_code=200)
 async def add_combatant_to_encounter(name: str, session: Session = Depends(get_session)):
     combatant_for_name = session.exec(
         select(CombatantModel).where(CombatantModel.name == name)

@@ -1,3 +1,15 @@
+# Components and Endpoints
+
+| Component                                          | API Endpoint Used                             |
+|----------------------------------------------------|-----------------------------------------------|
+| ViewCharDB Table                                   | GET /combatants/data                          |
+| - Add combatant to encounter button (per row)      | PUT /encounter {name}                         |
+| ViewEncounterChars Table                           | GET /encounter                                |
+| - Roll Initiative Button                           | NONE, this button just goes to InitiativeView |
+| - Remove All Chars from Encounter Button           | DELETE /encounter                             |
+| - remove combatant from encounter button (per row) | DELETE /encounter/{name}                      |
+| InitiativeView Table                               | GET /encounter/rolls                          |
+
 # Project 3 Initiative Tracker
 
 Initiative Tracker is a web application designed to assist Dungeon Masters (DMs) in managing combat encounters during tabletop role-playing games (TTRPGs). 
