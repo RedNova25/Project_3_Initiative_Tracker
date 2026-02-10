@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import logo from '../assets/logo.svg'
 
 
 const NavBar:React.FC = () => {
-    const [counter, setCounter] = useState(0)
 
   return (
     <>
@@ -21,10 +20,10 @@ const NavBar:React.FC = () => {
             Initiative Tracker
           </Navbar.Brand>
           {/* right justify the nav links */}
-          <Nav className="ms-auto">
-            <Nav.Link href="/viewcharacterdb">+View Character DB</Nav.Link>
-            <Nav.Link href="/viewencounterchars">+View Encounter Characters</Nav.Link>
-            <Nav.Link href="/initiativeview">+Initiative View</Nav.Link>
+          <Nav className="ms-auto gap-4">
+            <Nav.Link href="/">Welcome</Nav.Link>
+            <Nav.Link href="/viewcharacterdb">View Character DB</Nav.Link>
+            <Nav.Link href="/viewencounterchars">View Encounter Characters</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

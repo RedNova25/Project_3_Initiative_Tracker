@@ -1,11 +1,9 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router'
 import { Container, Table } from 'react-bootstrap'
 
 const InitiativeView:React.FC = () => {
   const [encounterChars, setEncounterChars] = useState([])
-  const navigate = useNavigate()
 
   const fetchEncounterChars = async () => {
   //   curl -X 'GET' \
