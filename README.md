@@ -3,7 +3,7 @@
 | Component                                          | API Endpoint Used                             |
 |----------------------------------------------------|-----------------------------------------------|
 | ViewCharDB Table                                   | GET /combatants/data                          |
-| - Add combatant to encounter button (per row)      | PUT /encounter {name}                         |
+| - Add combatant to encounter button (per row)      | PUT /encounter/{name}                         |
 | ViewEncounterChars Table                           | GET /encounter                                |
 | - Roll Initiative Button                           | NONE, this button just goes to InitiativeView |
 | - Remove All Chars from Encounter Button           | DELETE /encounter                             |
