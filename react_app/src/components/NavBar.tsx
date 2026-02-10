@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import logo from '../assets/logo.svg'
 
 
-const NavBar = () => {
+const NavBar:React.FC = () => {
     const [counter, setCounter] = useState(0)
 
   return (

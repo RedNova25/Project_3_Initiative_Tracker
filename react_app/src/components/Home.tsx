@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Home = () => {
+const Home:React.FC = () => {
   return (
     <>
         <h1 className='text-center mt-5'>Welcome to the Initiative Tracker!</h1>
