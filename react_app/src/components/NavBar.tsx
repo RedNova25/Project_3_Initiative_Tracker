@@ -1,15 +1,33 @@
-import React from 'react'
-import { Card } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Container, Nav, Navbar } from 'react-bootstrap'
+import logo from '../assets/logo.svg'
+
 
 const NavBar = () => {
+    const [counter, setCounter] = useState(0)
+
   return (
     <>
-    {/* <Link to="/">Home</Link> */}
-
-    <a href="">hello</a>
-
-    <h1>Navigation Bar</h1>
+    <Navbar className="bg-body-tertiary" expand="lg" data-bs-theme="dark">
+        <Container>
+          <Navbar.Brand href="/">
+            <img
+              alt=""
+              src={logo}
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />{' '}
+            Initiative Tracker
+          </Navbar.Brand>
+          {/* right justify the nav links */}
+          <Nav className="ms-auto">
+            <Nav.Link href="/viewcharacterdb">+View Character DB</Nav.Link>
+            <Nav.Link href="/viewencounterchars">+View Encounter Characters</Nav.Link>
+            <Nav.Link href="/initiativeview">+Initiative View</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
     </>
   )
 }
