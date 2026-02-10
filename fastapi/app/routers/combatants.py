@@ -38,12 +38,20 @@ async def create_combatants(combatants: list[CombatantModel], session: Session =
         "created_combatants": combatants_created
     }
 
+# Return just the data for all combatants
+@router.get("/data", status_code=200)
+async def get_combatants(session: Session = Depends(get_session)):
+    combatants = session.exec(select(CombatantModel)).all()
+    if len(combatants) == 0:
+        raise HTTPException(status_code=404, detail="No combatants have been created; no data can be retrieved.")
+    return combatants
+
 # Get every character's initiative roll, sorted from highest to lowest. Include character's name, initiative roll, then all other info.
 @router.get("/", status_code=200)
 async def get_combatants_and_rolls(session: Session = Depends(get_session)):
     combatants = session.exec(select(CombatantModel)).all()
     if len(combatants) == 0:
-        raise HTTPException(status_code=404, detail="No combatants have been created.")
+        raise HTTPException(status_code=404, detail="No combatants have been created; no data can be retrieved to make initiative rolls.")
     return get_init_roll_details(combatants)
 
 # get a specific combatant's info by name
