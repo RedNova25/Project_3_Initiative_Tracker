@@ -37,7 +37,7 @@ const FindCharsChat: React.FC = () => {
         style={{ maxWidth: "400px", margin: "0 auto" }}
       />
       <div className="d-flex justify-content-center mb-4">
-      <Button onClick={chatFunction} size="lg" disabled={loading} className="shadow-sm my-button" style={{ minWidth: "220px" }}>
+      <Button onClick={chatFunction} size="lg" disabled={loading} className="shadow-sm" style={{ minWidth: "220px" }}>
         {loading ? "Fetching character" : "Find character"}
       </Button>
       </div>
@@ -73,7 +73,7 @@ const FindCharsChat: React.FC = () => {
             <td>{charClass}</td>
             <td>{dex}</td>
             <td>{init}</td>
-            <td><Button variant="success" className='my-button' onClick={() => addToEncounter(name)}>Add To Encounter</Button></td>
+            <td><Button variant="success" onClick={() => addToEncounter(name)}>Add To Encounter</Button></td>
           </tr>
         );
       })}
