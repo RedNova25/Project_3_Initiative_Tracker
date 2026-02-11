@@ -8,6 +8,7 @@ import ViewCharDB from './components/ViewCharDB'
 // css
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
+import FindCharsChat from './components/FindCharsChat'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/viewcharacterdb" element={<ViewCharDB />}  />
         <Route path="/initiativeview" element={<InitiativeView />} />
         <Route path="/viewencounterchars" element={<ViewEncounterChars/>}  />
+        <Route path="/findcharschat" element={<FindCharsChat/>}/>
       </Routes>
 
     </>
