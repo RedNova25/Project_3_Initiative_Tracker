@@ -27,6 +27,11 @@ class ChatInputModel(BaseModel):
     input: str
 
 
+# ============================================================================
+# ENDPOINTS
+# ============================================================================
+
+
 @router.post("/gen_dnd_chat", status_code=200)
 async def chat_dnd_with_memory(chat_input: ChatInputModel):
     return PlainTextResponse(gen_char_chain.invoke(input=chat_input.input)["response"])
@@ -100,9 +105,12 @@ async def ingest_chars_from_chat_raw(
     return await _process_chat_input(chat_input, session)
 
 
-#### Helper function for the above two endpoints, to avoid code duplication. ####
+# ============================================================================
+# HELPER FUNCTIONS
+# ============================================================================
 
 
+# Helper function for the above two endpoints, to avoid code duplication.
 async def _process_chat_input(chat_input: str, session: Session):
     """Shared logic for processing chat input"""
     pattern = r"```json\s*(.*?)\s*```"

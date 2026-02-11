@@ -17,7 +17,7 @@ from collections import OrderedDict
 router = APIRouter(prefix="/combatants", tags=["combatants"])
 
 # ============================================================================
-# ENDPOINTS (Public API)
+# ENDPOINTS
 # ============================================================================
 
 
