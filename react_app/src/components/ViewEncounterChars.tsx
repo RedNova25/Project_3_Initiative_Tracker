@@ -86,10 +86,10 @@ const ViewEncounterChars:React.FC = () => {
           <h1>Encounter Characters</h1>
         </Col>
         <Col className="text-center">
-          <Button variant="secondary" onClick={clearEncounter}>Clear Encounter</Button>
+          <Button className='my-button' variant="secondary" onClick={clearEncounter}>Clear Encounter</Button>
         </Col>
         <Col className="text-center">
-          <Button onClick={() => navigate('/initiativeview')}>Roll Initiative</Button>
+          <Button  className='my-button' onClick={() => navigate('/initiativeview')}>Roll Initiative</Button>
         </Col>
       </Row>
       <hr className='border-3'/>
@@ -101,6 +101,7 @@ const ViewEncounterChars:React.FC = () => {
             <th>Class</th>
             <th>Dexterity</th>
             <th>Other Initiative Modifier</th>
+            <th></th>
           </tr>
         </thead>
 
@@ -112,7 +113,7 @@ const ViewEncounterChars:React.FC = () => {
               <td>{char.char_class}</td>
               <td>{char.dex_score}</td>
               <td>{char.other_init_mod}</td>
-              <td><Button variant="danger" onClick={() => removeFromEncounter(char)}>Remove From Encounter</Button></td>
+              <td><Button variant="danger" className='my-button' onClick={() => removeFromEncounter(char)}>Remove From Encounter</Button></td>
             </tr>
           ))}
         </tbody>

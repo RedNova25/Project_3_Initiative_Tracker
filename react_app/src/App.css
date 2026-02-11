@@ -17,3 +17,42 @@
   font-style: normal;
 }
 
+
+button {
+  font-family: "Metamorphous", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.my-button {
+  font-family: "Metamorphous", serif;
+  box-shadow: 6px 6px 0 lightgray;
+  transform: skewX(-15deg);
+}
+
+.my-button:hover {
+  box-shadow: 4px 4px 0 lightgray;    
+  transform: skewX(-15deg) translate(2px, 2px);
+}
+
+.my-button:active {
+    box-shadow: none;
+    transform: skewX(-15deg) translate(6px, 6px);
+}
+
+.my-button:disabled {
+    box-shadow: none;
+    transform: skewX(-15deg) translate(0, 0);
+    opacity: 0.6;
+}
+
+
+.home-container {
+  border: 1px solid black;
+  border-radius: 20px;
+  margin: 50px auto;
+  padding: 0px 0px 30px 0px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.9);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
