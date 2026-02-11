@@ -24,6 +24,7 @@ const NavBar:React.FC = () => {
             <Nav.Link href="/">Welcome</Nav.Link>
             <Nav.Link href="/viewcharacterdb">View Character DB</Nav.Link>
             <Nav.Link href="/viewencounterchars">View Encounter Characters</Nav.Link>
+            <Nav.Link href="/findcharschat">Find Characters Chat</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
