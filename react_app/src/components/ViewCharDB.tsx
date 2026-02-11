@@ -34,6 +34,7 @@ const ViewCharDB:React.FC = () => {
             <th>Class</th>
             <th>Dexterity</th>
             <th>Other Initiative Modifier</th>
+            <th></th>
           </tr>
         </thead>
 
@@ -44,7 +45,7 @@ const ViewCharDB:React.FC = () => {
               <td>{char.char_class}</td>
               <td>{char.dex_score}</td>
               <td>{char.other_init_mod}</td>
-              <td><Button variant="success" onClick={() => addToEncounter(char)}>Add To Encounter</Button></td>
+              <td><Button variant="success" className='my-button' onClick={() => addToEncounter(char)}>Add To Encounter</Button></td>
             </tr>
           ))}
         </tbody>
