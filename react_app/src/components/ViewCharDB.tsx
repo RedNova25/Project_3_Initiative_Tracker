@@ -7,7 +7,6 @@ const ViewCharDB:React.FC = () => {
   const [characters, setCharacters] = useState([])
 
   const fetchCharacters = async () => {
-    //http://127.0.0.1:8000/combatants/
     const request = await axios.get('http://127.0.0.1:8000/combatants/data')
     console.log(request.data)
     // sort by character name alphabetically

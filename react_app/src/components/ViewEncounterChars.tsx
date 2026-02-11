@@ -7,14 +7,6 @@ const ViewEncounterChars:React.FC = () => {
   const [encounterChars, setEncounterChars] = useState([])
   const navigate = useNavigate()
 
-  // const fetchCharacters = async () => {
-  //   //http://127.0.0.1:8000/combatants/
-  //   const request = await axios.get('http://127.0.0.1:8000/combatants/data')
-  //   console.log(request.data)
-  //   // sort by character name alphabetically
-  //   setCharacters(request.data.sort((a, b) => a.name.localeCompare(b.name)))
-  // }
-
   const fetchEncounterChars = async () => {
   //   curl -X 'GET' \
   // 'http://127.0.0.1:8000/encounter/data/' \
@@ -54,32 +46,6 @@ const ViewEncounterChars:React.FC = () => {
 
 
   return (
-    // <Container>
-    //   <Row>
-
-    //     <Col> 
-    //       <h1>All Characters</h1>
-    //       <ul>
-    //         {characters.map((char, index) => (
-    //           <li key={index}>{char.name}
-    //           <Button variant="primary" onClick={() => addToEncounter(char)}>Add to Encounter</Button>
-    //           </li>
-    //         ))}
-    //       </ul>
-    //     </Col>
-
-    //     <Col> 
-    //       <h1>Encounter Characters<Button variant="secondary" onClick={clearEncounter}>Clear Encounter</Button></h1>
-    //       <ul>
-    //         {encounterChars.map((char, index) => (
-    //           <li key={index}>{char.name}<Button variant="danger" onClick={() => removeFromEncounter(char)}>Remove</Button></li>
-    //         ))}
-    //       </ul>
-    //       <Button onClick={() => navigate('/initiativeview')}>Roll Initiative</Button>
-    //     </Col>
-
-    //   </Row>
-    // </Container>
     <Container>
       <Row className="align-items-center">
         <Col className="text-center"> 

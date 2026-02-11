@@ -13,6 +13,7 @@ const Home:React.FC = () => {
               <li><strong>View Character DB:</strong> View and add characters to your encounter.</li>
               <li><strong>View Encounter Characters:</strong> Remove characters from your encounter and Roll Initiative.</li>
               <li><strong>Find Characters Chat:</strong> Use AI to find a character.</li>
+              <li><strong>Make Characters Chat:</strong> Use AI to make a character.</li>
           </ul>
         </div>
       </Container>

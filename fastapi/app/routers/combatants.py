@@ -12,8 +12,6 @@ from app.services.vectordb_service import (
 )
 from app.services.sqldb_service import get_session
 
-from collections import OrderedDict
-
 router = APIRouter(prefix="/combatants", tags=["combatants"])
 
 # ============================================================================
@@ -225,6 +223,7 @@ async def _create_combatants_logic(combatants: list[CombatantModel], session: Se
     combatants_failed: list[CombatantModel] = []
 
     for combatant in combatants:
+        CombatantModel.model_validate(combatant.model_dump())
         existing = session.exec(
             select(CombatantModel).where(CombatantModel.name == combatant.name)
         ).first()
@@ -247,5 +246,5 @@ async def _create_combatants_logic(combatants: list[CombatantModel], session: Se
 
     return {
         "message": f"{len(combatants_created)} combatants created successfully. {len(combatants_failed)} combatants are already present.",
-        "created_combatants": combatants_created,
+        "created_combatants": combatants_created
     }
