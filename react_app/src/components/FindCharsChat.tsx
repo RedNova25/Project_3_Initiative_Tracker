@@ -20,7 +20,7 @@ const FindCharsChat: React.FC = () => {
         setInput("")
         setLoading(false)
     }
-    //Function allows the button encounter functionality to work
+    //Function allows the button to add to encounter functionality to work
     const addToEncounter = async (name) => {
       const request = await axios.put(`http://127.0.0.1:8000/encounter/${name}`)
       console.log(request.data)
@@ -30,7 +30,7 @@ const FindCharsChat: React.FC = () => {
       <Card.Title as="h2" className="mb-4 text-center">Find Characters</Card.Title>
       <Form.Control
         type="text"
-        placeholder="Tell me a character and I will find it for you..."
+        placeholder="Tell me what characters or classes you are looking for."
         value={input}
         onChange={(event) => setInput(event.target.value)}
         className="mb-4 shadow-sm"
@@ -60,12 +60,9 @@ const FindCharsChat: React.FC = () => {
             .map((block, index) => {
         const lines = block.split("\n");
 
-        //const name = lines.find(l => l.startsWith("Name:"))?.split(": ")[1];
         const name = lines[0]?.replace(/^Name:\s*/i, "");
         const charClassLine = lines.find(l =>/^Class:|^Char Class:|^Char_class:/i.test(l));
         const charClass = charClassLine?.split(":")[1]?.trim();
-        //const charClass = lines.find(l => l.startsWith("Class:"))?.split(": ")[1];
-        //const dex = lines.find(l => l.startsWith("Dexterity:"))?.split(": ")[1];
         const dexLine = lines.find(l => /^Dexterity:|^Dexterity Score:/i.test(l));
         const dex = dexLine?.split(":")[1]?.trim();
         const init = lines.find(l => l.startsWith("Other Initiative Modifier:"))?.split(": ")[1];
