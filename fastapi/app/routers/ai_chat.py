@@ -1,5 +1,6 @@
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request, Body, Form
 from fastapi.params import Depends
+from typing import Optional
 from pydantic import BaseModel
 from sqlmodel import Session
 from starlette.responses import PlainTextResponse
@@ -87,20 +88,27 @@ async def ingest_chars_from_chat(
 
 @router.post("/ingest_chars_from_chat/raw", status_code=200)
 async def ingest_chars_from_chat_raw(
-    request: Request, session: Session = Depends(get_session)
+    request: Request,
+    session: Session = Depends(get_session),
+    input: Optional[str] = Form(default=None),
 ):
     """
-    Accepts raw text body for clients that can't properly escape JSON.
+    Accepts either {"input": "text"} JSON or raw text body for flexible input.
     Use /ingest_chars_from_chat for normal requests.
     """
-    body = await request.body()
-    body_text = body.decode("utf-8")
+    # If input field was successfully parsed from JSON, use it
+    if input is not None:
+        chat_input = input
+    else:
+        # Fall back to raw body handling
+        body = await request.body()
+        body_text = body.decode("utf-8")
 
-    try:
-        body_json = json.loads(body_text)
-        chat_input = body_json.get("input", body_text)
-    except json.JSONDecodeError:
-        chat_input = body_text
+        try:
+            body_json = json.loads(body_text)
+            chat_input = body_json.get("input", body_text)
+        except json.JSONDecodeError:
+            chat_input = body_text
 
     return await _process_chat_input(chat_input, session)
 
