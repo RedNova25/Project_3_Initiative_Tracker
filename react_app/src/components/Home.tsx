@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Home = () => {
+const Home:React.FC = () => {
   return (
     <>
         <h1 className='text-center mt-5'>Welcome to the Initiative Tracker!</h1>
@@ -9,7 +9,7 @@ const Home = () => {
         <ul className='list-unstyled text-center mt-3'>
             <li><strong>Character Database:</strong> View and manage your characters, including their stats, abilities, and other relevant information.</li>
             <li><strong>Encounter Characters:</strong> Add characters to the encounter.</li>
-            <li><strong>Initiative View:</strong> Roll for initiative for all characters in the encounter.</li>
+            <li><strong>Initiative View:</strong> Rolls for initiative for all characters in the encounter. Access this from the Encounter Characters view.</li>
         </ul>
     </>
     

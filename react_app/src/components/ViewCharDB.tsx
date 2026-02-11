@@ -1,17 +1,23 @@
 import axios from 'axios'
 import {useState , useEffect } from 'react'
-import { Container, Table } from 'react-bootstrap'
+import { Button, Container, Table } from 'react-bootstrap'
 
 
-const ViewCharDB = () => {
+const ViewCharDB:React.FC = () => {
   const [characters, setCharacters] = useState([])
 
   const fetchCharacters = async () => {
     //http://127.0.0.1:8000/combatants/
-    const request = await axios.get('http://127.0.0.1:8000/combatants/')
-    setCharacters(request.data)
+    const request = await axios.get('http://127.0.0.1:8000/combatants/data')
     console.log(request.data)
+    // sort by character name alphabetically
+    setCharacters(request.data.sort((a, b) => a.name.localeCompare(b.name)))
   }
+
+  const addToEncounter = async (char) => {
+      const request = await axios.put(`http://127.0.0.1:8000/encounter/${char.name}`)
+      console.log(request.data)
+    }
   
   useEffect(() => {
     fetchCharacters()
@@ -24,24 +30,21 @@ const ViewCharDB = () => {
 
         <thead>
           <tr>
-            <th>#</th>
             <th>Name</th>
-            <th>Dexterity Init Mod +</th>
-            <th>Other Init Mod +</th>
-            <th>Roll =</th>
-            <th>Total Initiative</th>
+            <th>Class</th>
+            <th>Dexterity</th>
+            <th>Other Initiative Modifier</th>
           </tr>
         </thead>
 
         <tbody>
           {characters.map((char, index) => (
             <tr key={index}>
-              <td>{index + 1}</td>
               <td>{char.name}</td>
-              <td>{char.dex_init_mod}</td>
+              <td>{char.char_class}</td>
+              <td>{char.dex_score}</td>
               <td>{char.other_init_mod}</td>
-              <td>{char.init_roll}</td>
-              <td>{char.initiative}</td>
+              <td><Button variant="success" onClick={() => addToEncounter(char)}>Add To Encounter</Button></td>
             </tr>
           ))}
         </tbody>

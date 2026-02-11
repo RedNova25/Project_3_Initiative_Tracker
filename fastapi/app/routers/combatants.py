@@ -35,11 +35,8 @@ async def create_combatants(
 async def get_combatants(session: Session = Depends(get_session)):
     combatants = session.exec(select(CombatantModel)).all()
     if len(combatants) == 0:
-        raise HTTPException(
-            status_code=404,
-            detail="No combatants have been created; no data can be retrieved.",
-        )
-    return combatants
+        raise HTTPException(status_code=404, detail="No combatants have been created; no data can be retrieved.")
+    return [combatant.to_dict() for combatant in combatants]
 
 
 # Get every character's initiative roll, sorted from highest to lowest. Include character's name, initiative roll, then all other info.
