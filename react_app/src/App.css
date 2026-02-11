@@ -18,13 +18,9 @@
 }
 
 
-button {
-  font-family: "Metamorphous", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 .my-button {
+  font-family: "Metamorphous", serif;
+  color: white;
   font-family: "Metamorphous", serif;
   box-shadow: 6px 6px 0 lightgray;
   transform: skewX(-15deg);
@@ -36,16 +32,16 @@ button {
 }
 
 .my-button:active {
-    box-shadow: none;
-    transform: skewX(-15deg) translate(6px, 6px);
+  color: black;
+  box-shadow: none;
+  transform: skewX(-15deg) translate(6px, 6px);
 }
 
 .my-button:disabled {
-    box-shadow: none;
-    transform: skewX(-15deg) translate(0, 0);
-    opacity: 0.6;
+  box-shadow: none;
+  transform: skewX(-15deg) translate(0, 0);
+  opacity: 0.6;
 }
-
 
 .home-container {
   border: 1px solid black;
