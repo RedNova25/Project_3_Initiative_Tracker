@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
-import logo from '../assets/logo.svg'
+import logo from '../assets/skull.svg'
 
 
 const NavBar:React.FC = () => {
@@ -9,7 +9,7 @@ const NavBar:React.FC = () => {
     <>
     <Navbar className="bg-body-tertiary" expand="lg" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="/">
+          <Navbar.Brand href="/" className='metamorphous-font'>
             <img
               alt=""
               src={logo}
