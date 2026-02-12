@@ -15,6 +15,7 @@ const ViewCharDB:React.FC = () => {
 
   const addToEncounter = async (char) => {
       const request = await axios.put(`http://127.0.0.1:8000/encounter/${char.name}`)
+      alert(`${char.name} added to encounter!`)
       console.log(request.data)
     }
   

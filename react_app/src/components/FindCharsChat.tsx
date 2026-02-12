@@ -26,8 +26,9 @@ const FindCharsChat: React.FC = () => {
       console.log(request.data)
     }
   return (
+    <Container>
     <Card className="p-4 shadow-sm">
-      <Card.Title as="h2" className="mb-4 text-center">Find Characters</Card.Title>
+      <Card.Title as="h2" className="mb-4 text-center metamorphous-font">Find Characters</Card.Title>
       <Form.Control
         type="text"
         placeholder="Tell me what characters or classes you are looking for."
@@ -37,11 +38,11 @@ const FindCharsChat: React.FC = () => {
         style={{ maxWidth: "400px", margin: "0 auto" }}
       />
       <div className="d-flex justify-content-center mb-4">
-      <Button onClick={chatFunction} size="lg" disabled={loading} className="shadow-sm" style={{ minWidth: "220px" }}>
+      <Button  onClick={chatFunction} size="lg" disabled={loading} className="my-button" style={{ minWidth: "220px" }}>
         {loading ? "Fetching character" : "Find character"}
       </Button>
       </div>
-      <Container>
+      
         {output && output.trim().length > 0 && (
         <Table striped>
           <thead>
@@ -73,15 +74,15 @@ const FindCharsChat: React.FC = () => {
             <td>{charClass}</td>
             <td>{dex}</td>
             <td>{init}</td>
-            <td><Button variant="success" onClick={() => addToEncounter(name)}>Add To Encounter</Button></td>
+            <td><Button variant="success" className="my-button" onClick={() => addToEncounter(name)}>Add To Encounter</Button></td>
           </tr>
         );
       })}
           </tbody>
         </Table>
     )}
-      </Container>
     </Card>
+    </Container>
   );
 }
 

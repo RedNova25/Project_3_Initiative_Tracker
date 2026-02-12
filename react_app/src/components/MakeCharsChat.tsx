@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Button, Card, Form} from 'react-bootstrap'
+import { Button, Card, Container, Form} from 'react-bootstrap'
 
 const MakeCharsChat: React.FC = () => {
     //Creating state to capture LLM input, 
@@ -64,8 +64,9 @@ const MakeCharsChat: React.FC = () => {
   )
 
   return (
+    <Container>
     <Card className="p-4 shadow-sm">
-      <Card.Title as="h2" className="mb-4 text-center">
+      <Card.Title as="h2" className="mb-4 text-center metamorphous-font">
         Make Characters Chat
       </Card.Title>
       <Form.Control
@@ -81,7 +82,7 @@ const MakeCharsChat: React.FC = () => {
           onClick={chatFunction}
           size="lg"
           disabled={loading}
-          className="shadow-sm my-button"
+          className="my-button"
           style={{ minWidth: "220px" }}
         >
           {loadingJSON ? "Creating JSON of character" : "JSON character"}
@@ -90,9 +91,10 @@ const MakeCharsChat: React.FC = () => {
       {chat && (
         <>
           {/* <pre>{JSON.stringify(outputJSON, null, 2)}</pre> */}
-          <pre>{chat}</pre>
-          <div className="text-center mt-2">
-            <Button onClick={() => setInputJSON(outputJSON)}>
+          <pre style={{  border: "1px solid #ccc", padding: "10px", borderRadius: "5px" }}>{chat}</pre>
+          {/* change width */}
+          <div className="text-center mt-2" >
+            <Button className='m-4 my-button' onClick={() => setInputJSON(outputJSON)}>
               Paste into Create Character text box
             </Button>
           </div>
@@ -111,7 +113,7 @@ const MakeCharsChat: React.FC = () => {
           onClick={ingestFunction}
           size="lg"
           disabled={loading}
-          className="shadow-sm my-button"
+          className="my-button"
           style={{ minWidth: "220px" }}
         >
           {loading ? "Ingesting character JSON" : "Create character"}
@@ -121,6 +123,7 @@ const MakeCharsChat: React.FC = () => {
         <div className="text-center text-success mb-3">{successMessage}</div>
       )}
     </Card>
+  </Container>
   );
 }
 

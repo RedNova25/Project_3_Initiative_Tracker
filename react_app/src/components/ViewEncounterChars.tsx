@@ -47,9 +47,9 @@ const ViewEncounterChars:React.FC = () => {
 
   return (
     <Container>
-      <Row className="align-items-center">
+      <Row className="align-items-center m-4">
         <Col className="text-center"> 
-          <h1>Encounter Characters</h1>
+          <h2 className='metamorphous-font'>Encounter Characters</h2>
         </Col>
         <Col className="text-center">
           <Button className='my-button' variant="secondary" onClick={clearEncounter}>Clear Encounter</Button>
