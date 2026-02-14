@@ -69,3 +69,24 @@ ollama pull gemma3:4b
 
 The `fastapi/app.db` SQLite database, as of iniital commit, came with 39 combatants. If you want to play around with the API for testing, **please make sure to discard changes in Git for this file before pushing.**
 
+```txt
+                          `-.
+              -._ `. `-.`-. `-.
+             _._ `-._`.   .--.  `.
+          .-'   '-.  `-|\/    \|   `-.
+        .'         '-._\   (o)O) `-.
+       /         /         _.--.\ '. `-. `-.
+      /|    (    |  /  -. ( -._( -._ '. '.
+     /  \    \-.__\ \_.-'`.`.__'.   `-, '. .'
+     |  /\    |  / \ \     `--')/  .-'.'.'
+ .._/  /  /  /  / / \ \          .' . .' .'
+/  ___/  |  /   \ \  \ \__       '.'. . .
+\  \___  \ (     \ \  `._ `.     .' . ' .'
+ \ `-._\ (  `-.__ | \    )//   .'  .' .-'
+  \_-._\  \  `-._\)//    ""_.-' .-' .' .'
+    `-'    \ -._\ ""_..--''  .-' .'
+            \/    .' .-'.-'  .-' .-'
+                .-'.' .'  .' .-'
+"PRECIOUSSSS!! What has the nasty Bagginsess
+           got in it's pocketssss?"
+```
